@@ -26,21 +26,15 @@ hist(data$steps)
 
 ## Task 2: Calculate the mean number of steps in every day
 
-To compute the mean number of steps per day and the sum of steps per day the data.table package is used
+To compute the mean and the median number of steps per day and the sum of steps per day the data.table package is used.
 
 
 ```r
 library('data.table')
 DT <- data.table(data)
-meansteps <- DT[, mean(steps), by=Data]
-```
-
-```
-## Error in eval(expr, envir, enclos): Objekt 'Data' nicht gefunden
-```
-
-```r
+meansteps <- DT[, mean(steps), by=Date]
 sumsteps <- DT[, sum(steps), by=Date]
+#mediansteps <- DT[, median(steps, na.rm=TRUE), by=Date]
 hist(sumsteps$V1)
 ```
 
@@ -52,7 +46,14 @@ plot(meansteps$Date, meansteps$V1)
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-2.png)
 
+```r
+#plot(mediansteps$Date, mediansteps$V1)
+```
+
+The mean of steps taken every day is 1.0766189 &times; 10<sup>4</sup> and the median is 10765
+
 ## Task 3: What is the average daily activity pattern
+
 
 ## Task 4: Comparing tidy and original data
 
